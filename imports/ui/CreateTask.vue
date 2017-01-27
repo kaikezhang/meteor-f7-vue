@@ -25,24 +25,24 @@
 import {Tasks} from '/lib/collections';
 
 export default {
-	data(){
-		return { 
-			name: '' 
-		};
-	},
-	name: 'create-task',
-	methods: {
-		insert(){
-		  Tasks.insert({
+  data(){
+    return { 
+      name: '' 
+    };
+  },
+  name: 'create-task',
+  methods: {
+    insert(){
+      Tasks.insert({
         name: this.name,
         isPublic: false,
         isDone: false,
         createdAt: new Date(),
       });
-		  this.name = '';
-		  // alert('inserted');
-		}
-	}
+      this.name = '';
+      // alert('inserted');
+    }
+  }
 };
 </script>
 
