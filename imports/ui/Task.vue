@@ -1,7 +1,7 @@
 <template>
   <!-- http://framework7.io/vue/swipeout-list.html -->
   <!-- <f7-list-item checkbox name="my-checkbox" value="1" title="Checkbox 1" checked></f7-list-item> -->
-  <f7-list-item swipeout checkbox :checked="task.isDone? true: false" @click="toggleIsDone"
+  <f7-list-item swipeout checkbox :checked="task.isDone" @click="toggleIsDone"
   :title="task.name" v-bind:class="{ isPublic: task.isPublic, isDone: task.isDone}">
     <f7-swipeout-actions right>
       <f7-swipeout-button  @click.stop.prevent="toggleIsPublic" :color="task.isPublic? 'gray': 'yellow'">

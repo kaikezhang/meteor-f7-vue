@@ -1,7 +1,9 @@
 <template>
 <div class="list-block">
     <transition-group name="list-trasition" tag="ul">
-        <task v-for="task in tasks_vue_copy" :task="task" v-bind:key="task"></task>
+    <template v-for="task in tasks" v-if="!hideComplete || !task.isDone">
+      <task :task="task" :key="task._id"></task>
+    </template>
     </transition-group> 
 </div>
 </template>
@@ -16,43 +18,14 @@ import {Tasks} from '/lib/collections';
 
 export default {
   name: 'tasks-list',
+  props:['hideComplete'],
   data() {
     return {tasks_vue_copy: []};
   },
   meteor: {
     tasks() {
-        return Tasks.find({}, {sort: {createdAt: 1}});
+      return Tasks.find({}, {sort: {createdAt: -1}});
     }
-  },
-  created() {
-    let that = this;
-    Tracker.autorun(function () {
-      // _.shuffle([1, 2, 3]);
-      // alert('here'); 
-      let tasks = Tasks.find({}, {sort: {createdAt: 1}}).fetch();
-      if(that.tasks_vue_copy.length === 0)
-        that.tasks_vue_copy = tasks;
-      else {
-        // remove tasks in local but not in remote
-        // add tasks in remote but not in local
-        // update sync task properties
-        let shouldRemove = _.differenceBy(that.tasks_vue_copy, tasks, '_id');
-        let afterRemove = _.difference(that.tasks_vue_copy, shouldRemove);
-
-        let shouldAdd = _.differenceBy(tasks, that.tasks_vue_copy, '_id');
-        let allTasks = afterRemove.concat(shouldAdd);
-
-        //sort according to remote tasks
-        let sortedTasks = _.sortBy(allTasks, [(o)=>{ return _.indexOf(tasks, o); }]);
-
-        that.tasks_vue_copy = _.map(sortedTasks, (o)=> {
-          let remoteTask = _.find(tasks, (k)=>{ return k._id === o._id; });
-          for(let k in remoteTask) o[k] = remoteTask[k];
-          return o;
-        });
-
-      }
-    });
   },
   components: {
     Task
