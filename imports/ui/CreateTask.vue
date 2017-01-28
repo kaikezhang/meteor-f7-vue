@@ -23,6 +23,7 @@
 <script>
 
 import {Tasks} from '/lib/collections';
+import { Meteor } from 'meteor/meteor';
 
 export default {
   data(){
@@ -38,6 +39,7 @@ export default {
         isPublic: false,
         isDone: false,
         createdAt: new Date(),
+        owner: Meteor.userId(),
       });
       this.name = '';
       // alert('inserted');
