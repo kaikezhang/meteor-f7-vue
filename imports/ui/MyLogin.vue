@@ -87,8 +87,12 @@ export default {
     },
     signUp(){
       this.errMessage = '';
+      let valid = !/[~`!@.#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.username);
       if(!this.isSignUp)
         this.isSignUp = true;
+      else if(!valid){
+        this.errMessage ='Username contains special characters.';
+      }
       else if(! (this.password === this.confirmPwd )) {
         this.errMessage ='Passwords is not the same.';
       }
