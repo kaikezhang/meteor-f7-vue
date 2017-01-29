@@ -23,7 +23,7 @@
   </ul>
   </div>
 
-  <create-task></create-task>
+  <create-task v-if="currentUser"></create-task>
   <tasks-list :hideComplete="hideComplete" @incompleteTasksUpdate="updateNumber"></tasks-list>
 </div>
 </template>
@@ -40,6 +40,9 @@ export default {
       hideComplete : false,
       loginOpened : false,
     };
+  },
+  created(){
+    Meteor.subscribe('tasks');
   },
   meteor: {
     incompleteCount(){

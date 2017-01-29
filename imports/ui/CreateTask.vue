@@ -1,28 +1,15 @@
 <template>
-<!-- <f7-list form>
+<f7-list>
   <f7-list-item>
-    <f7-input type="text" v-bind:value="name" @keydown.enter.stop.prevent="insert">
+    <f7-label>New task:</f7-label>
+    <input type="text" v-model="name" @keyup.enter="insert" class="new-task-input">
   </f7-list-item>
-</f7-list> -->
-
-<div class="list-block">
-  <ul>
-    <li>
-      <div class="item-content">
-        <div class="item-inner">
-          <div class="item-input">
-            <input type="text" v-model="name" @keyup.enter="insert">
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>  
+</f7-list>
 
 </template>
 <script>
 
-import {Tasks} from '/lib/collections';
+import { Tasks } from '/lib/collections';
 import { Meteor } from 'meteor/meteor';
 
 export default {
@@ -34,17 +21,17 @@ export default {
   name: 'create-task',
   methods: {
     insert(){
-      Tasks.insert({
-        name: this.name,
-        isPublic: false,
-        isDone: false,
-        createdAt: new Date(),
-        owner: Meteor.userId(),
-      });
+      Meteor.call('tasks.insert', this.name)
       this.name = '';
-      // alert('inserted');
     }
   }
 };
 </script>
+
+<style>
+  input[type=text].new-task-input {
+    padding: 8px;
+    border-bottom: 2px solid #3CBC8D;
+  }
+</style>
 
