@@ -1,10 +1,7 @@
 <template>
-<f7-list>
-  <f7-list-item>
-    <f7-label>New task:</f7-label>
-    <input type="text" v-model="name" @keyup.enter="insert" class="new-task-input">
-  </f7-list-item>
-</f7-list>
+
+ <input type="text" v-model="name" @keyup.enter="insert" class="new-task-input" placeholder="Create a new task">
+ 
 
 </template>
 <script>
@@ -30,7 +27,13 @@ export default {
 
 <style>
   input[type=text].new-task-input {
+    display: block;
     padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    font-size: 140%;
+    border: 0px;
     border-bottom: 2px solid #3CBC8D;
   }
 </style>

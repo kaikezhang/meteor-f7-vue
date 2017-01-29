@@ -1,11 +1,12 @@
 <template>
-<div class="list-block">
+<f7-list style="margin-top: 0px;">
     <transition-group name="list-trasition" tag="ul">
-    <template v-for="task in tasks" v-if="!hideComplete || !task.isDone">
+    <template v-for="task in tasks" 
+    v-if="(!hideComplete || !task.isDone) && (!showOnlyMe || task.owner === currentUser._id)">
       <task :task="task" :key="task._id"></task>
     </template>
     </transition-group> 
-</div>
+</f7-list>
 </template>
 
 <script>
@@ -18,11 +19,14 @@ import {Tasks} from '/lib/collections';
 
 export default {
   name: 'tasks-list',
-  props:['hideComplete'],
+  props:['hideComplete', 'showOnlyMe'],
   meteor: {
     tasks() {
       return Tasks.find({}, {sort: {createdAt: -1}});
-    }
+    },
+    currentUser(){
+      return Meteor.user();
+    }        
   },
   components: {
     Task
