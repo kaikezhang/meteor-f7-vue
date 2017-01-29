@@ -25,3 +25,5 @@ interwebs:framework7
 meteortoys:allthings
 accounts-password
 practicalmeteor:mocha
+aldeed:simple-schema
+dburles:collection-helpers

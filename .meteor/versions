@@ -5,6 +5,7 @@ akryum:vue@1.2.2
 akryum:vue-component@0.8.1
 akryum:vue-component-dev-client@0.2.3
 akryum:vue-component-dev-server@0.0.4
+aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
 autoupdate@1.2.11
 babel-compiler@6.13.0
@@ -19,6 +20,7 @@ caching-html-compiler@1.1.0
 callback-hook@1.0.10
 check@1.2.4
 coffeescript@1.0.17
+dburles:collection-helpers@1.1.0
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.8
@@ -44,6 +46,7 @@ launch-screen@1.0.12
 livedata@1.0.18
 localstorage@1.0.12
 logging@1.1.16
+mdg:validation-error@0.2.0
 meteor@1.6.0
 meteor-base@1.0.4
 meteortoys:allthings@3.0.0

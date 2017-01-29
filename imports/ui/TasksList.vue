@@ -19,9 +19,6 @@ import {Tasks} from '/lib/collections';
 export default {
   name: 'tasks-list',
   props:['hideComplete'],
-  data() {
-    return {tasks_vue_copy: []};
-  },
   meteor: {
     tasks() {
       return Tasks.find({}, {sort: {createdAt: -1}});
@@ -30,11 +27,6 @@ export default {
   components: {
     Task
   },
-  // methods:{
-  //   onDeleteTask(id){
-  //     Tasks.remove({_id : id});
-  //   }
-  // }
 };
 </script>
 
